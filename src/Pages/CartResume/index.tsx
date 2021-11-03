@@ -25,13 +25,22 @@ const CartResume = () => {
         });
     }
 
+    const cartList = useMemo(() => {
+        const arr = new Set()
+        return items.filter(item => {
+            const duplicate = arr.has(item.id)
+            arr.add(item.id)
+            return !duplicate
+        })
+    }, [items])
+
     return (
         <Body>
             <Wrapper>
                 <h1>{`Carrinho de Compras (${items.length} Compras)`}</h1>
                 <CartContainer>
                     <CartArea>
-                        {items.length ? items.filter((item, index) => items.indexOf(item) === index).map(item => (
+                        {items.length ? cartList.map(item => (
                             <CartItem key={item.id}>
                                 <ProductImage bgImage={item.image} />
                                 <CartContent>
