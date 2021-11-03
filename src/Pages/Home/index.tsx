@@ -32,7 +32,9 @@ const Home: React.FC = () => {
     }, [])
 
     if (loading) return (
-        <ReactLoading width={150} type="bars" color="#dadada" />
+        <Body>
+            <ReactLoading width={150} type="bars" color="#dadada" />
+        </Body>
     )
 
     return (
